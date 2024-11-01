@@ -1,5 +1,5 @@
 (library
  (name a5)
  (libraries csv batteries)
- (modules_without_implementation garden plant)
+ (modules garden plant)
 )
