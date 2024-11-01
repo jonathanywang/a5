@@ -4,6 +4,10 @@ type cell =
   | Empty
   | Occupied of Plant.t
 
+val get_gen : t -> int
+val get_cols : t -> int
+val get_grid : t -> cell array array
+
 val create : int -> int -> t
 (** Create a new garden with given rows and columns. *)
 
