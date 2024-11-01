@@ -14,7 +14,7 @@ let is_dead plant = if plant.age > plant.max_age then true else false
 
 (** Prints a visual representation of the plant’s age. *)
 let print plant =
-  if plant.age <= 3 then print_char '.'
+  if plant.age <= 3 then print_char '_'
   else if plant.age <= 6 then print_char 'o'
   else if plant.age <= 9 then print_char 'O'
   else print_char 'X'

@@ -1,0 +1,9 @@
+Requirement 2.5.  You must provide a design document in "doc/design.txt" 
+(also acceptable as file extensions/formats: Markdown, Word, PDF) that explains 
+in English and/or math the simulation dynamics that you implemented — that is, the rules for how plants 
+live and grow and die throughout the simulation. Describe the design process that you went through to achieve those rules, 
+ncluding what other rules you might have tried and why you discarded them. Discuss why you feel that the resulting behavior 
+of your simulation is interesting and organic. 
+
+
+HINT: LOOK AT YOUR GARDEN.ML STEP FUNCTION
