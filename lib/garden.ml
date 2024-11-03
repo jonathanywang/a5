@@ -11,6 +11,7 @@ type t = {
 
 let get_gen garden = garden.generation
 let get_cols garden = garden.cols
+let get_rows garden = garden.rows
 let get_grid garden = garden.grid
 
 let create rows cols =
@@ -80,3 +81,9 @@ let print garden =
         row;
       print_newline ())
     garden.grid
+
+(** (** Prints a visual representation of the garden. *) let print_garden plants
+    = ANSITerminal.print_string [ ANSITerminal.on_black; ANSITerminal.white ]
+    "Garden:\n"; List.iter (fun plant -> print plant; ANSITerminal.print_string
+    [] " " (* Adds a space between plants *) ) plants; print_endline "" (* Move
+    to the next line after printing all plants *) *)

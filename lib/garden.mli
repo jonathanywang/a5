@@ -6,6 +6,7 @@ type cell =
 
 val get_gen : t -> int
 val get_cols : t -> int
+val get_rows : t -> int
 val get_grid : t -> cell array array
 
 val create : int -> int -> t

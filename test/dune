@@ -1,6 +1,6 @@
 (test
  (name test_a5)
- (libraries ounit2 a5)
+ (libraries ounit2 a5 qcheck)
   (deps 
   (glob_files_rec ../data/*)
   ))
