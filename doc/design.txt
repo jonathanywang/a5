@@ -1,9 +1,17 @@
-Requirement 2.5.  You must provide a design document in "doc/design.txt" 
-(also acceptable as file extensions/formats: Markdown, Word, PDF) that explains 
-in English and/or math the simulation dynamics that you implemented — that is, the rules for how plants 
-live and grow and die throughout the simulation. Describe the design process that you went through to achieve those rules, 
-ncluding what other rules you might have tried and why you discarded them. Discuss why you feel that the resulting behavior 
-of your simulation is interesting and organic. 
+I designed the simulation in a way that evens out and genderates a vibrant garden over time. The way that my algorithm works is that
+it iterates throughout the  grid and, if it is empty, there is a 3% chance that a new plant is created in that spot. 
+>> if Random.int 100 < 3 then garden.grid.(r).(c) <- Occupied (Plant.create ()). What this does is it obtains a random integer in the range of
+0 to 100. If that integer is less than 3, or within the 3% chance, then the function create () replaces the empty spot with a newly created plant.
+Otherwise, the iterator will continue.
 
+As plants continue to be created, that means we have to ensure that the death of plants is also enforced. With this in mind, if
+we iterate through the garden grid in a given generation and find that a spot is not empty, then we check if its dead. If it is dead, then
+we set that spot as Empty (aka remove it from the grid). We also obtain a random integer in the range of 0 to 100 in the range of 0 to 100.
+If that integer is less than 10, or within the 10% chance, then the plant will be replaced with an empty slot.
+if Plant.is_dead plant || Random.int 100 < 10 then grid.(r).(c) <- Empty;
 
-HINT: LOOK AT YOUR GARDEN.ML STEP FUNCTION
+We also have a germination system where, if a plant does die, then there is a 5% chance that a plant will grow in a neighboring
+empty cell. We do this by generating a random integer from 0 to 100 and, if it is under 5 (aka 5%) then it will grow in a cell
+that does not go off the border of the garden and does not already have a plant itself.
+
+This algorithm will use those characteristics to iterate through the garden grid in each generation, creating an ecosystem that evolves over time.

@@ -25,23 +25,48 @@ let add_plant garden row col =
 
 let step garden =
   garden.generation <- garden.generation + 1;
+  let grid = garden.grid in
+  let rows = garden.rows in
+  let cols = garden.cols in
+
+  (* Define directions locally within step *)
+  let directions =
+    [ (-1, -1); (-1, 0); (-1, 1); (0, -1); (0, 1); (1, -1); (1, 0); (1, 1) ]
+  in
+
   Array.iteri
     (fun r row ->
       Array.iteri
         (fun c cell ->
           match cell with
           | Empty ->
-              (* Small chance of a new plant growing *)
-              if Random.int 100 < 5 then
-                garden.grid.(r).(c) <- Occupied (Plant.create ())
+              (* Small chance of a new plant growing in empty cells *)
+              if Random.int 100 < 3 then
+                grid.(r).(c) <- Occupied (Plant.create ())
           | Occupied plant ->
               (* Check plant age and randomly decide to grow, stay the same, or
                  die *)
-              if Plant.is_dead plant || Random.int 100 < 10 then
-                garden.grid.(r).(c) <- Empty (* Plant dies *)
-              else Plant.age plant (* Plant ages *))
+              if Plant.is_dead plant || Random.int 100 < 10 then (
+                (* Plant dies, set to empty *)
+                grid.(r).(c) <- Empty;
+
+                (* Germination: chance for new plants in neighboring cells *)
+                List.iter
+                  (fun (dr, dc) ->
+                    let nr = r + dr in
+                    let nc = c + dc in
+                    if nr >= 0 && nr < rows && nc >= 0 && nc < cols then
+                      match grid.(nr).(nc) with
+                      | Empty ->
+                          if Random.int 100 < 5 then
+                            (* 5% chance to grow a new plant *)
+                            grid.(nr).(nc) <- Occupied (Plant.create ())
+                      | Occupied _ -> ())
+                  directions)
+              else (* Plant survives and ages *)
+                Plant.age plant)
         row)
-    garden.grid
+    grid
 
 let print garden =
   Printf.printf "Generation: %d\n" garden.generation;
