@@ -3,7 +3,11 @@ type t = {
   max_age : int;
 }
 
-(** Creates a new plant. *)
+(* Accessor for age *)
+let get_age plant = plant.age
+
+(* Accessor for max_age *)
+let get_max_age plant = plant.max_age
 let create () = { age = 0; max_age = 9 }
 
 (** Ages the plant by one step, possibly affecting its state. *)

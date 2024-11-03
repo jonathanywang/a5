@@ -1,5 +1,8 @@
 type t
 
+val get_age : t -> int
+val get_max_age : t -> int
+
 val create : unit -> t
 (** Creates a new plant. *)
 
