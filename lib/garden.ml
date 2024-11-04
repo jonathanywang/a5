@@ -1,3 +1,5 @@
+open ANSITerminal
+
 type cell =
   | Empty
   | Occupied of Plant.t
@@ -69,21 +71,14 @@ let step garden =
         row)
     grid
 
-let print garden =
-  Printf.printf "Generation: %d\n" garden.generation;
-  Array.iter
-    (fun row ->
-      Array.iter
-        (fun cell ->
-          match cell with
-          | Empty -> print_char '.'
-          | Occupied plant -> Plant.print plant)
-        row;
-      print_newline ())
-    garden.grid
-
-(** (** Prints a visual representation of the garden. *) let print_garden plants
-    = ANSITerminal.print_string [ ANSITerminal.on_black; ANSITerminal.white ]
-    "Garden:\n"; List.iter (fun plant -> print plant; ANSITerminal.print_string
-    [] " " (* Adds a space between plants *) ) plants; print_endline "" (* Move
-    to the next line after printing all plants *) *)
+(** Prints a visual representation of the garden. *)
+let print plants =
+  ANSITerminal.print_string
+    [ ANSITerminal.on_black; ANSITerminal.white ]
+    "Garden:\n";
+  List.iter
+    (fun plant ->
+      Plant.print plant;
+      ANSITerminal.print_string [] " " (* Adds a space between plants *))
+    plants;
+  print_endline "" (* Move to the next line after printing all plants *)

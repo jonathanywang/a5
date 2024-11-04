@@ -1,6 +1,6 @@
 (library
  (name a5)
- (libraries csv batteries)
+ (libraries batteries ANSITerminal)
  (modules garden plant)
  (instrumentation
   (backend bisect_ppx))

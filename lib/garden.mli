@@ -18,5 +18,5 @@ val step : t -> unit
 val add_plant : t -> int -> int -> unit
 (** Add a plant to a specified position in the garden if it’s empty. *)
 
-val print : t -> unit
+val print : Plant.t list -> unit
 (** Prints the current state of the garden in a text-based format. *)

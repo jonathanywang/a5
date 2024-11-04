@@ -1,0 +1,144 @@
+Functions:
+
+type bin = Z | B0 of bin | B1 of bin 
+
+(** [int_of_bin b] is the [int] that [b] represents. *)
+let rec int_of_bin = function
+  | Z -> 0
+  | B0 b -> 2 * int_of_bin b
+  | B1 b -> 1 + (2 * int_of_bin b)
+
+(** [inc b] is the [bin] that is one more than [b], i.e., [b] incremented. *)
+let rec inc = function
+  | Z -> B1 Z
+  | B0 b -> B1 b
+  | B1 b -> B0 (inc b)
+
+
+Theorem: forall b, int_of_bin (inc b) = 1 + (int_of_bin b)
+
+Proof: by induction on b.
+P(b) = "int_of_bin (inc b) = 1 + (int_of_bin b)" is true for all b
+
+Base case 1: b = Z
+Show: when b = Z, P(Z) = int_of_bin (inc Z) = 1 + (int_of_bin Z)
+
+  int_of_bin (inc Z)
+=   { evaluation by definition of inc }
+  int_of_bin B1 Z
+=   { evaluation by definition of int_of_bin }
+  1 + (2 * int_of_bin Z)
+=   { evaluation by definitino of int_of_bin }
+  1 + (2 * 0)
+=   { algebra }
+  1
+
+  1 + (int_of_bin Z)
+=   { evaluation by definiiton of int_of_bin}
+  1 + 0
+=   { algebra }
+  1
+
+Since int_of_bin (inc Z) = 1 and 1 + (int_of_bin Z) = 1, then 1 = 1 so P(Z) is true.
+
+
+Base case 2: b = B0 Z
+Show: when b = B0 Z, P(B0 Z) = int_of_bin (inc (B0 Z)) = 1 + (int_of_bin (B0 Z))
+
+  int_of_bin (inc (B0 Z))
+=   { evaluation by definition of inc }
+  int_of_bin (B1 Z)
+=   { evaluation by definition of int_of_bin}
+  1 + (2 * int_of_bin Z)
+=   { evaluation by definition of int_of_bin}
+  1 + (2 * 0)
+=   { algebra }
+  1
+
+  1 + (int_of_bin (B0 Z))
+=   { evaluation of int_of_bin }
+  1 + (2 * int_of_bin Z)
+=   { evaluation of int_of_bin}
+  1 + (2 * 0)
+=   { algebra }
+  1
+
+Since int_of_bin (inc (B0 Z)) = 1 and 1 + (int_of_bin (B0 Z)) = 1, then 1 = 1 so P(B0 Z) is true.
+
+
+Base case 3: b = B1 Z
+Show: when b = B1 Z, P(B1 Z) = int_of_bin (inc (B1 Z)) = 1 + (int_of_bin (B1 Z))
+
+  int_of_bin (inc (B1 Z))
+=   { evaluation by definition of inc }
+  int_of_bin (B0 inc (Z))
+=   { evaluation by definition of inc}
+  int_of_bin (B0 (B1 Z))
+=   { evaluation by definition of int_of_bin}
+  2 * (int_of_bin (B1 Z))
+=   { evaluation by definition of int_of_bin}
+  2 * (1 + (2 * int_of_bin Z))
+=   { evaluation by definition of int_of_bin }
+  2 * (1 + (2 * 0))
+=   { algebra }
+  2 * (1)
+=   { algebra }
+  2
+
+  1 + (int_of_bin (B1 Z))
+=   { evaluation of int_of_bin }
+  1 + (1 + (2 * int_of_bin Z))
+=   { evaluation of int_of_bin }
+  1 + (1 + (2 * 0))
+=   { algebra }
+  1 + (1 + 0)
+=   { algebra }
+  2
+
+Since int_of_bin (inc (B1 Z)) = 2 and 1 + (int_of_bin (B1 Z)) = 2, then 2 = 2 so P(B1 Z) is true.
+
+
+Inductive case: Assume that b = B0 (k) or b = B1 (k)
+IH: let's take an arbitrary b = n where P(n) = int_of_bin (inc n) = 1 + (int_of_bin n)
+Show: Let's show that int_of_bin (inc (inc b)) = 1 + (int_of_bin (inc b)) using two cases:
+
+Case 1: P(B0 k) = int_of_bin (inc (B0 k)) = 1 + (int_of_bin (B0 k))
+
+  int_of_bin (inc (B0 k))
+=   { evaluation by definition of inc }
+  int_of_bin (B1 k)
+=   { evaluation by definition of int_of_bin }
+  1 + (2 * int_of_bin k)
+
+  1 + (int_of_bin (B0 k))
+=   { evaluation by definition of int_of_bin }
+  1 + (2 * int_of_bin k)
+
+Since both sides evaluate to 1 + (2 * int_of_bin k), then P(B0 k) is true.
+
+
+Case 2: P(B1 k) = int_of_bin (inc (B1 k)) = 1 + (int_of_bin (inc (B1 k)))
+
+  int_of_bin (inc (B1 k))
+=   { evaluation by definition of inc }
+  int_of_bin (B0 (inc k))
+=   { evaluation by definition of int_of_bin }
+  2 * (int_of_bin (inc k))
+=   { evaluation by the inductive hypothesis }
+  2 * (1 + (int_of_bin k))
+=   { evaluation by the distributive property}
+  2 + 2 * int_of_bin k
+}
+
+  1 + (int_of_bin (B1 k))
+=   { evaluation of int_of_bin }
+  1 + ((1 + (2 * int_of_bin k)))
+=   { algebra }
+  2 + 2 * int_of_bin k
+
+Since both sides evaluate to 2 + 2 * int_of_bin k, then P(B1 k) is true.
+
+Since we have shown that P(k) holds for when b = B0 (k) and when b = B1 (k), by the principle of induction,
+P(b) = "int_of_bin (inc b) = 1 + (int_of_bin b)" is true for all b
+
+QED

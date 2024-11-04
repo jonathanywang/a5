@@ -1,3 +1,5 @@
+open ANSITerminal
+
 type t = {
   mutable age : int;
   max_age : int;
@@ -16,16 +18,11 @@ let age plant = plant.age <- plant.age + 1
 (** Checks if the plant is dead based on its age. *)
 let is_dead plant = if plant.age > plant.max_age then true else false
 
-(** Prints a visual representation of the plant’s age. *)
+(** Prints a visual representation of the plant’s age using color. *)
 let print plant =
-  if plant.age <= 3 then print_char '_'
-  else if plant.age <= 6 then print_char 'o'
-  else if plant.age <= 9 then print_char 'O'
-  else print_char 'X'
-
-(**(** Prints a visual representation of the plant’s age using color. *) let
-   print plant = if plant.age <= 3 then ANSITerminal.print_string
-   [ ANSITerminal.green ] "_" else if plant.age <= 6 then
-   ANSITerminal.print_string [ ANSITerminal.yellow ] "o" else if plant.age <= 9
-   then ANSITerminal.print_string [ ANSITerminal.blue ] "O" else
-   ANSITerminal.print_string [ ANSITerminal.red ] "X" *)
+  if plant.age <= 3 then ANSITerminal.print_string [ ANSITerminal.green ] "_"
+  else if plant.age <= 6 then
+    ANSITerminal.print_string [ ANSITerminal.yellow ] "o"
+  else if plant.age <= 9 then
+    ANSITerminal.print_string [ ANSITerminal.blue ] "O"
+  else ANSITerminal.print_string [ ANSITerminal.red ] "X"

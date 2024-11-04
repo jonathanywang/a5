@@ -31,18 +31,18 @@ let parse_args () =
 (* Visualizes the garden with a border and prints the current generation. *)
 let print_with_border garden =
   Printf.printf "Generation: %d\n" (A5.Garden.get_gen garden);
-  let border = String.make (A5.Garden.get_cols garden + 2) '#' in
+  let border = String.make (A5.Garden.get_cols garden + 2) '-' in
   print_endline border;
   Array.iter
     (fun row ->
-      print_char '#';
+      print_char '|';
       Array.iter
         (fun cell ->
           match cell with
           | Empty -> print_char '.'
           | Occupied plant -> A5.Plant.print plant)
         row;
-      print_char '#';
+      print_char '|';
       print_newline ())
     (A5.Garden.get_grid garden);
   print_endline border
