@@ -1,0 +1,92 @@
+commit 9faf0223dd8a5f7d3b61f5298fdf49c4a991e101
+Author: Jonathan Wang <jonathanywang05@gmail.com>
+Date:   Mon Nov 4 18:42:37 2024 -0500
+
+    Revised and Implemented Further Coverage
+    
+    - Implemented new functions and coverage cases for garden.ml
+    - Revised documentation and fixed some errors
+
+commit 5095036ed2585cf571bc4b5e65113bbaa3f4f3d6
+Author: Jonathan Wang <jonathanywang05@gmail.com>
+Date:   Mon Nov 4 13:52:49 2024 -0500
+
+    Wrote documentation for all files
+    
+    - Commented in documentation for functions in all files requiring documentation
+
+commit faf0ae4a62ae53d48eb81d6ad041e62b841f1ed4
+Author: Jonathan Wang <jonathanywang05@gmail.com>
+Date:   Mon Nov 4 01:03:55 2024 -0500
+
+    Wrote out proof and revised files
+    
+    - created proof file and proved task 3
+    - added color and change of border to garden and plants
+
+commit b99e75cc114983de1ff4220633ea6b4a9ab0f346
+Author: Jonathan Wang <jonathanywang05@gmail.com>
+Date:   Sun Nov 3 18:36:04 2024 -0500
+
+    Created test cases for garden.ml
+    
+    - Implemented test cases for garden file
+    - Reorganized and created qcheck tests for both plant and garden files
+
+commit 20e711fc5700604cad5a4cb43ae91702abd70c83
+Author: Jonathan Wang <jonathanywang05@gmail.com>
+Date:   Sun Nov 3 15:53:22 2024 -0500
+
+    Created test cases for plant.ml
+    
+    - implemented functions to test plant file
+    - implemented potential cases to test functions
+
+commit 72ee7ab7b46916579d03f13285cd16f4a9c41a17
+Author: Jonathan Wang <jonathanywang05@gmail.com>
+Date:   Sat Nov 2 23:45:28 2024 -0400
+
+    Implemented simulation dynamics
+    
+    - Added characteristics of simulation in step in garden.ml
+    - Wrote out design.txt to describe how the algorithm works
+
+commit 983ed7878569e9b7ca1484815410a6a4f7066b44
+Author: Jonathan Wang <jonathanywang05@gmail.com>
+Date:   Fri Nov 1 00:11:14 2024 -0400
+
+    Fixed some slight bugs
+    
+    - Changed printing output look for plant ages <=3
+    - Added design.txt file and explained process behind simulation dynamics in the garden
+
+commit 1e60f8c7d793623b755233499aec75fc63492543
+Author: Jonathan Wang <jonathanywang05@gmail.com>
+Date:   Fri Nov 1 00:05:26 2024 -0400
+
+    Implemented Driver Function
+    
+     - Worked on implementing interactive TUI
+    - Fixed bugs that got in the way of creating changes after each generation
+    - Implented some getters in garden.ml to be used in driver function
+
+commit 44dea8df4a12630c5c26d92fbacbca7299d26815
+Author: Jonathan Wang <jonathanywang05@gmail.com>
+Date:   Thu Oct 31 22:53:18 2024 -0400
+
+    Added plant.ml and garden.ml files
+    - Developed implementation for both plant and garden files
+    - Ensured that ml and mli files matched with types and functions
+
+commit d7b37e5ad91dc384aa714e35aa3033ccdf7a8f14
+Author: Jonathan Wang <jonathanywang05@gmail.com>
+Date:   Thu Oct 31 21:59:34 2024 -0400
+
+    Implemented mli files
+    - Added and implemented outline for plant and garden mli files
+
+commit a34e55bbb2980d19f9c23a7644171d3029a9ce26
+Author: Jonathan Wang <jonathanywang05@gmail.com>
+Date:   Thu Oct 31 08:02:08 2024 -0400
+
+    Initializing Project
